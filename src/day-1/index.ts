@@ -1,10 +1,11 @@
-import * as fs from 'fs';
+import * as fs from 'fs'
 
 const updateSpelledDigit = (str: string): string => {
     // all of this because of 'oneight`
-    const spelledNumberRegex = /(one|two|three|four|five|six|seven|eight|nine|zero)/
+    const spelledNumberRegex =
+        /(one|two|three|four|five|six|seven|eight|nine|zero)/
     let copy = str
-    while(spelledNumberRegex.test(copy)) {
+    while (spelledNumberRegex.test(copy)) {
         copy = copy.replace('one', 'o1ne')
         copy = copy.replace('two', 't2wo')
         copy = copy.replace('three', 't3hree')
@@ -19,11 +20,11 @@ const updateSpelledDigit = (str: string): string => {
 }
 
 const partA = () => {
-    const input = fs.readFileSync('./src/day-1/test-a.txt', 'utf-8');
-    const lines = input.split('\n');
+    const input = fs.readFileSync('./src/day-1/test-a.txt', 'utf-8')
+    const lines = input.split('\n')
     let sum = 0
     const numberRegex = /(\d)/g
-    for(const line of lines) {
+    for (const line of lines) {
         const results = Array.from(line.matchAll(numberRegex))
         const firstDigit = results[0][0]
         const secondDigit = results[results.length - 1][0]
@@ -35,11 +36,11 @@ const partA = () => {
 }
 
 const partB = () => {
-    const input = fs.readFileSync('./src/day-1/test-a.txt', 'utf-8');
-    const lines = input.split('\n');
+    const input = fs.readFileSync('./src/day-1/test-a.txt', 'utf-8')
+    const lines = input.split('\n')
     let sum = 0
     const numberRegex = /(\d)/g
-    for(const line of lines) {
+    for (const line of lines) {
         const toCheck = updateSpelledDigit(line)
         const results = Array.from(toCheck.matchAll(numberRegex))
         const firstDigit = Number(results[0][0])

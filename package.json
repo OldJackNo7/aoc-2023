@@ -1,18 +1,29 @@
 {
-  "name": "aoc-2023",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "day1": "ts-node src/day-1/index.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.10.3",
-    "ts-node": "^10.9.1",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.2"
-  }
+    "name": "aoc-2023",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "format:check": "prettier --check .",
+        "format:write": "prettier --write .",
+        "lint:check": "eslint \"**/*.{ts,tsx}\"",
+        "lint:fix": "eslint --fix \"**/*.{ts,tsx}\"",
+        "start": "ts-node src/day-$DAY/index.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^20.10.3",
+        "@typescript-eslint/eslint-plugin": "^6.4.0",
+        "eslint": "^8.0.1",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-config-standard-with-typescript": "^40.0.0",
+        "eslint-plugin-import": "^2.25.2",
+        "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+        "eslint-plugin-promise": "^6.0.0",
+        "prettier": "^3.1.0",
+        "ts-node": "^10.9.1",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "*"
+    }
 }
