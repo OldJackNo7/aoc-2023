@@ -44,6 +44,7 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="TypeScript">
+      <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
       <option name="SOFT_MARGINS" value="80" />
     </codeStyleSettings>
     <codeStyleSettings language="Vue">
