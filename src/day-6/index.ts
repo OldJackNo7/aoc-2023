@@ -1,72 +1,51 @@
 import * as fs from 'fs'
 
-const partA = () => {
-    const input = fs.readFileSync('./src/day-6/test-a.txt', 'utf-8')
-    const lines = input.split('\n')
-    const times: number[] = []
-    const distances: number[] = []
-    const [, timesString] = lines[0].split(':')
-    const [, distancesString] = lines[1].split(':')
-    const timesStringArray = timesString
-        .replaceAll(/\s+/g, ' ')
-        .trim()
-        .split(' ')
-    const distancesStringArray = distancesString
-        .replaceAll(/\s+/g, ' ')
-        .trim()
-        .split(' ')
-    for (let i = 0; i < timesStringArray.length; i++) {
-        times.push(Number(timesStringArray[i]))
-        distances.push(Number(distancesStringArray[i]))
-    }
-
+const calculateSolution = (times: number[], distances: number[]): number => {
     let solution = 1
-    // eslint-disable-next-line @typescript-eslint/no-for-in-array
-    for (const timeIndex in times) {
+    for (const [index, time] of times.entries()) {
         let count = 0
-        const time = times[timeIndex]
         for (let i = 1; i < time; i++) {
-            if ((time - i) * i > distances[timeIndex]) {
+            if ((time - i) * i > distances[index]) {
                 count++
             }
         }
         solution *= count
     }
+    return solution
+}
+
+const parseInput = (input: string): string[] => {
+    const lines = input.split('\n')
+    const [, timesString] = lines[0].split(':')
+    const [, distancesString] = lines[1].split(':')
+    return [timesString, distancesString]
+}
+
+const splitString = (string: string, replaceValue: string): string[] => {
+    return string.replaceAll(/\s+/g, replaceValue).trim().split(' ')
+}
+
+const partA = () => {
+    const input = fs.readFileSync('./src/day-6/test-a.txt', 'utf-8')
+    const [timesString, distancesString] = parseInput(input)
+    const timesStringArray = splitString(timesString, ' ')
+    const distancesStringArray = splitString(distancesString, ' ')
+    const times = timesStringArray.map(Number)
+    const distances = distancesStringArray.map(Number)
+
+    const solution = calculateSolution(times, distances)
     console.log(`Result A: ${solution}`)
 }
 
 const partB = () => {
     const input = fs.readFileSync('./src/day-6/test-a.txt', 'utf-8')
-    const lines = input.split('\n')
-    const times: number[] = []
-    const distances: number[] = []
-    const [, timesString] = lines[0].split(':')
-    const [, distancesString] = lines[1].split(':')
-    const timesStringArray = timesString
-        .replaceAll(/\s+/g, '')
-        .trim()
-        .split(' ')
-    const distancesStringArray = distancesString
-        .replaceAll(/\s+/g, '')
-        .trim()
-        .split(' ')
-    for (let i = 0; i < timesStringArray.length; i++) {
-        times.push(Number(timesStringArray[i]))
-        distances.push(Number(distancesStringArray[i]))
-    }
+    const [timesString, distancesString] = parseInput(input)
+    const timesStringArray = splitString(timesString, '')
+    const distancesStringArray = splitString(distancesString, '')
+    const times = timesStringArray.map(Number)
+    const distances = distancesStringArray.map(Number)
 
-    let solution = 1
-    // eslint-disable-next-line @typescript-eslint/no-for-in-array
-    for (const timeIndex in times) {
-        let count = 0
-        const time = times[timeIndex]
-        for (let i = 1; i < time; i++) {
-            if ((time - i) * i > distances[timeIndex]) {
-                count++
-            }
-        }
-        solution *= count
-    }
+    const solution = calculateSolution(times, distances)
     console.log(`Result B: ${solution}`)
 }
 
